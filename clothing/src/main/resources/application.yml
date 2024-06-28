@@ -4,8 +4,14 @@ spring:
   application:
     name: clothing
   datasource:
+    url: jdbc:sqlserver://m2mclothing.database.windows.net:1433;database=m2m_clothing;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30
+    username: PhatOmachi
+    password: 0971527645Aa
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://m2mclothing.database.windows.net:1433;database=m2m_clothing;user=PhatOmachi;password=0971527645Aa;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;;
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServerDialect
   mail:
     host: smtp.gmail.com
     password: hfil awpd dsou xkmb
