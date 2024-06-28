@@ -1,0 +1,51 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy container app to Azure Web App - m2mclothing
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Log in to registry
+      uses: docker/login-action@v2
+      with:
+        registry: https://deploy.azurecr.io/
+        username: ${{ secrets.AzureAppService_ContainerUsername_34f0698065134ee5a224dddbb234e11f }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_de70debe90a0430eaf39cc0ed1baa5f9 }}
+
+    - name: Build and push container image to registry
+      uses: docker/build-push-action@v3
+      with:
+        push: true
+        tags: deploy.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_34f0698065134ee5a224dddbb234e11f }}/latest:${{ github.sha }}
+        file: ./Dockerfile
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+    - name: Deploy to Azure Web App
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'm2mclothing'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_8fe3e211a5454522bf912e8cbf6f0387 }}
+        images: 'deploy.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_34f0698065134ee5a224dddbb234e11f }}/latest:${{ github.sha }}'
