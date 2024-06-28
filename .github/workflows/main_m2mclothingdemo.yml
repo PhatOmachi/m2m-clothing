@@ -31,7 +31,7 @@ jobs:
       with:
         push: true
         tags: m2mclothingg.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_8f8c338450634f1a8b03bf46ef06927f }}/m2mclothing:${{ github.sha }}
-        file: .clothing/Dockerfile
+        file: ./Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
