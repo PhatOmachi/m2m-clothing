@@ -5,9 +5,7 @@ spring:
     name: clothing
   datasource:
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    password: root
-    url: jdbc:sqlserver://localhost:1433;databaseName=m2m_clothing;encrypt=false;trustServerCertificate=true;
-    username: sa
+    url: jdbc:sqlserver://m2mclothing.database.windows.net:1433;database=m2m_clothing;user=PhatOmachi;password=0971527645Aa;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;;
   mail:
     host: smtp.gmail.com
     password: hfil awpd dsou xkmb
@@ -24,8 +22,8 @@ spring:
       client:
         registration:
           google:
-            client-id:
-            client-secret:
+            client-id: 321877704749-2v71bd2jvjvhg1qs8ntnlokcbv3qb4el.apps.googleusercontent.com
+            client-secret: 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
             scope:
               - email
               - profile
