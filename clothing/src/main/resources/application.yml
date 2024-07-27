@@ -4,7 +4,7 @@ spring:
   application:
     name: clothing
   datasource:
-    url: jdbc:sqlserver://datasqlserverr.database.windows.net:1433;database=m2mClothingg;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+    url: jdbc:sqlserver://datasqlserverr.database.windows.net:1433;database=m2m_clothing;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
     username: KhoaVu
     password: VuAnhKhoa123@
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
